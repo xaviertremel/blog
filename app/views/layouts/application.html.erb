@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Xavier Bike Shop Blog</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+  </head>
+
+  <body>
+
+  	<div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="\#">Bike Shop Blog</a>
+                </li>
+
+                <% @latest_articles.each do |article| %>
+                <li>
+                    <a href="\#"><%= article.title %></a>
+                </li>
+            
+            		<% end %>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+
+			    <%= yield %>
+
+        </div>
+        <!-- /#page-content-wrapper -->
+
+        <footer class="site-footer">
+	  	&copy; 2016 Bike Shop Berlin - Our Blog
+				</footer>
+
+    </div>
+    <!-- /#wrapper -->
+
+  </body>
+
+  <!-- Javascript files below -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+</html>
