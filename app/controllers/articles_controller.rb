@@ -5,6 +5,7 @@ class ArticlesController < ApplicationController
   def nav_articles
     @latest_articles = Article.order(created_at: :desc)
     @article_first = Article.take(1)
+    @latestarticles = Article.order(created_at: :desc)
   end
 
   # GET /articles

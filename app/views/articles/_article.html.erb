@@ -1,18 +1,9 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Our latest articles</h1>
-
-<%= render @articles %>
-
-<!--
-
-    <% @latest_articles.each do |article| %>
-      <div class="article">
+ <div class="article">
         <div class="article-image">
           <%= image_tag(article.image_url, :class => "img-responsive img-rounded", :style => 'min-width:300px') %>
         </div>
         <div class="article-title">
-          <%= article.title %>
+          <%= link_to article.title, article, :style => 'color:#333' %>
         </div>
         <div class="article-author">
           Published by <%= article.author %> on <%= article.created_at.strftime("%A, %d.%m.%Y") %>
@@ -27,11 +18,3 @@
         </div>
         <hr>
       </div>
-    <% end %>
-
--->
-
-
-<br>
-
-<%= link_to 'New Article', new_article_path %>
