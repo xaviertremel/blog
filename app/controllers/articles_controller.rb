@@ -20,7 +20,7 @@ class ArticlesController < ApplicationController
   # GET /articles/1.json
   def show
     @articles = Article.all
-    @comments = @article.comments.paginate(:page => params[:page], :per_page => 2)
+    @comments = @article.comments.order(created_at: :desc).paginate(:page => params[:page], :per_page => 3)
   end
 
   # GET /articles/new
