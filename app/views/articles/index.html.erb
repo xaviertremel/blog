@@ -1,8 +1,7 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Our latest articles</h1>
 
 <%= render @latest_articles %>
+<%= will_paginate @latest_articles %>
 
 <!--
 
@@ -34,4 +33,12 @@
 
 <br>
 
-<%= link_to 'New Article', new_article_path %>
+<% if user_signed_in? %>
+
+<%= link_to 'New Article', new_article_path, class: "btn btn-default" %>
+
+<% else %>
+
+<%= link_to 'New Article', new_user_registration_path, class: "btn btn-default" %>
+
+<% end %>

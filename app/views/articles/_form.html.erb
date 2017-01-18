@@ -23,7 +23,7 @@
 
   <div class="field">
     <%= f.label :author %>
-    <%= f.text_field :author %>
+    <%= f.text_field(:author, placeholder: current_user.first_name) %>
   </div>
 
   <div class="field">

@@ -27,8 +27,9 @@
                     <a href="\#">Bike Shop Blog</a>
                     <%= image_tag('2000px-Bicycle_with_Rider.png', :class => "img-responsive img-rounded", :style => 'max-width:250px') %>
                 </li>
+
                 <div class="sidebar-items">
-                <% @latest_articles.each do |article| %>
+                <% @latest_articles_nav.each do |article| %>
                 <li class="sidebar-item">
                   <%= link_to article.title, article %>
                     <div class="sidebar-article-date">
@@ -42,8 +43,40 @@
         </div>
         <!-- /#sidebar-wrapper -->
         <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Show Menu</a>
+
         <!-- Page Content -->
         <div id="page-content-wrapper">
+
+          <div class="login">
+
+            <% if user_signed_in? %>
+                You are logged in as: <%= current_user.email %>
+            <% end %>
+
+            
+
+              <% if user_signed_in? %>
+                <%= link_to('Logout', destroy_user_session_path, class: "btn btn-default", :method => :delete) %>
+              <% else %>
+                <%= link_to('Login', new_user_session_path, class: "btn btn-default") %>
+              <% end %>
+
+            
+
+          </div>
+
+          <% if notice %>
+          <br/>
+          <p id="notice" class="alert alert-info"><%= notice %></p>
+          <% end %>
+
+          <% if alert %>
+          <br/>
+          <p id="alert" class="alert alert-danger"><%= alert %></p>
+          <% end %>
+
+
+
 
 			    <%= yield %>
 

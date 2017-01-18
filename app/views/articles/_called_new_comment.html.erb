@@ -1,0 +1,11 @@
+<% if signed_in? %>
+    <h5>Add a comment:</h5>
+    <%= form_for([@article, @article.comments.build]) do |f| %>
+      <p>
+        <%= f.text_area(:body, class: "form-control") %>
+      </p>
+      <p>
+        <%= f.submit("Submit", class: "btn btn-default") %>
+      </p>
+    <% end %>
+<% end %>

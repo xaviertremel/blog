@@ -6,15 +6,21 @@
           <%= link_to article.title, article, :style => 'color:#333' %>
         </div>
         <div class="article-author">
-          Published by <%= article.author %> on <%= article.created_at.strftime("%A, %d.%m.%Y") %>
+          Published by <%= User.find(article.user_id).first_name %> on <%= article.created_at.strftime("%A, %d.%m.%Y") %>
         </div>
         <div class="article-body">
           <%= article.body %>
         </div>
         <div class="options">
-        <%= link_to 'Show', article %>
-        <%= link_to 'Edit', edit_article_path(article) %>
-        <%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%= link_to 'Read', article, class: "btn btn-default" %>
+
+        <% if can? :manage, article %>
+
+        <%= link_to 'Edit', edit_article_path(article), class: "btn btn-default" %>
+        <%= link_to 'Delete', article, class: "btn btn-default", method: :delete, data: { confirm: 'Are you sure?' } %>
+
+        <% end %>
+
         </div>
         <hr>
       </div>

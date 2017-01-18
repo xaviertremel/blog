@@ -1,9 +1,12 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
   before_filter :nav_articles
+  load_and_authorize_resource
 
   def nav_articles
-    @latest_articles = Article.order(created_at: :desc)
+    @latest_articles_nav = Article.order(created_at: :desc)
+    @latest_articles = Article.order(created_at: :desc).paginate(:page => params[:page], :per_page => 3)
     @article_first = Article.take(1)
   end
 
@@ -17,11 +20,13 @@ class ArticlesController < ApplicationController
   # GET /articles/1.json
   def show
     @articles = Article.all
+    @comments = @article.comments.paginate(:page => params[:page], :per_page => 2)
   end
 
   # GET /articles/new
   def new
     @article = Article.new
+    @article.user = current_user
   end
 
   # GET /articles/1/edit
@@ -32,6 +37,7 @@ class ArticlesController < ApplicationController
   # POST /articles.json
   def create
     @article = Article.new(article_params)
+    @article.user = current_user
 
     respond_to do |format|
       if @article.save
